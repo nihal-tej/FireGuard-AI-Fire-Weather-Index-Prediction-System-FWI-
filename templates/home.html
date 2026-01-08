@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FWI Prediction</title>
+</head>
+<body>
+
+    <h1>FWI Prediction</h1>
+
+    <!-- Form linked to Flask route -->
+    <form action="{{ url_for('predict_datapoint') }}" method="POST">
+
+        <input type="text" name="Temperature" placeholder="Temperature" required><br>
+        <input type="text" name="RH" placeholder="RH" required><br>
+        <input type="text" name="Ws" placeholder="Ws" required><br>
+        <input type="text" name="Rain" placeholder="Rain" required><br>
+        <input type="text" name="FFMC" placeholder="FFMC" required><br>
+        <input type="text" name="DMC" placeholder="DMC" required><br>
+        <input type="text" name="DC" placeholder="DC" required><br>
+        <input type="text" name="ISI" placeholder="ISI" required><br>
+        <input type="text" name="Classes" placeholder="Classes" required><br>
+        <input type="text" name="Region" placeholder="Region" required><br><br>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    <!-- Prediction Output -->
+    
+        <h2>The FWI prediction is {{ result }}</h2>
+
+</body>
+</html>
