@@ -3,31 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <title>FWI Prediction</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            width: 320px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1e40af;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            background: #e0f2fe;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
 </head>
+
 <body>
+<div class="box">
 
-    <h1>FWI Prediction</h1>
+    <h2>🔥 FWI Prediction</h2>
 
-    <!-- Form linked to Flask route -->
     <form action="{{ url_for('predict_datapoint') }}" method="POST">
-
-        <input type="text" name="Temperature" placeholder="Temperature" required><br>
-        <input type="text" name="RH" placeholder="RH" required><br>
-        <input type="text" name="Ws" placeholder="Ws" required><br>
-        <input type="text" name="Rain" placeholder="Rain" required><br>
-        <input type="text" name="FFMC" placeholder="FFMC" required><br>
-        <input type="text" name="DMC" placeholder="DMC" required><br>
-        <input type="text" name="DC" placeholder="DC" required><br>
-        <input type="text" name="ISI" placeholder="ISI" required><br>
-        <input type="text" name="Classes" placeholder="Classes" required><br>
-        <input type="text" name="Region" placeholder="Region" required><br><br>
+        <input type="number" step="any" name="Temperature" placeholder="Temperature" required>
+        <input type="number" step="any" name="RH" placeholder="Relative Humidity" required>
+        <input type="number" step="any" name="Ws" placeholder="Wind Speed" required>
+        <input type="number" step="any" name="Rain" placeholder="Rain" required>
+        <input type="number" step="any" name="FFMC" placeholder="FFMC" required>
+        <input type="number" step="any" name="DMC" placeholder="DMC" required>
+        <input type="number" step="any" name="DC" placeholder="DC" required>
+        <input type="number" step="any" name="ISI" placeholder="ISI" required>
+        <input type="number" step="any" name="Classes" placeholder="Classes (0/1)" required>
+        <input type="number" step="any" name="Region" placeholder="Region (0/1)" required>
 
         <button type="submit">Predict</button>
     </form>
 
-    <!-- Prediction Output -->
-    
-        <h2>The FWI prediction is {{ result }}</h2>
+    {% if result is not none %}
+        <div class="result">
+            Predicted FWI: {{ result }}
+        </div>
+    {% endif %}
 
+</div>
 </body>
 </html>
